@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Races</title>
+</head>
+<body>
+<h1>Races</h1>
+<ul>
+    <li th:each="race : ${races}">
+        <span th:text="${race.name}"></span> - <span th:text="${race.distance}"></span> km
+    </li>
+</ul>
+</body>
+</html>
