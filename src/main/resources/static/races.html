@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Races</title>
+    <title>Versenyel</title>
 </head>
 <body>
-<h1>Races</h1>
+<h1>Versenyek</h1>
 <ul>
     <li th:each="race : ${races}">
         <span th:text="${race.name}"></span> - <span th:text="${race.distance}"></span> km

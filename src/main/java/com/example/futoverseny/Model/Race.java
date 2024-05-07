@@ -1,5 +1,3 @@
-// Race.java
-
 package com.example.futoverseny.Model;
 
 import javax.persistence.Entity;
@@ -16,6 +14,15 @@ public class Race {
 
     private String name;
     private int distance;
+
+    public Race() {
+        // Az alapértelmezett konstruktor hozzáadása
+    }
+
+    public Race(String name, int distance) {
+        this.name = name;
+        this.distance = distance;
+    }
 
     // getters and setters
 

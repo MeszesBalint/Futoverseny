@@ -1,5 +1,3 @@
-// Result.java
-
 package com.example.futoverseny.Model;
 
 import javax.persistence.Entity;
@@ -22,6 +20,16 @@ public class Result {
     private Race race;
 
     private int timeInMinutes;
+
+    public Result() {
+        // Az alapértelmezett konstruktor hozzáadása
+    }
+
+    public Result(Runner runner, Race race, int timeInMinutes) {
+        this.runner = runner;
+        this.race = race;
+        this.timeInMinutes = timeInMinutes;
+    }
 
     // getters and setters
 

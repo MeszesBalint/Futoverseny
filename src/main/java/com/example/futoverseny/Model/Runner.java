@@ -1,5 +1,3 @@
-// Runner.java
-
 package com.example.futoverseny.Model;
 
 import javax.persistence.Entity;
@@ -17,6 +15,16 @@ public class Runner {
     private String name;
     private int age;
     private String gender;
+
+    public Runner() {
+        // Az alapértelmezett konstruktor hozzáadása
+    }
+
+    public Runner(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
 
     // getters and setters
 
