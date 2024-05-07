@@ -33,15 +33,16 @@ public class Dataloader implements CommandLineRunner {
         runnerRepository.saveAll(List.of(runner1, runner2, runner3, runner4));
 
         // Betöltjük a tesztadatokat a versenyekhez
-        Race race1 = new Race("Marathon", 42195); // Távolság méterben
+        Race race1 = new Race("Maraton", 42195); // Távolság méterben
         Race race2 = new Race("Félmaraton", 21097);
-        raceRepository.saveAll(List.of(race1, race2));
+        Race race3 = new Race("Sprint", 400);
+        raceRepository.saveAll(List.of(race1, race2, race3));
 
         // Betöltjük a tesztadatokat az eredményekhez
         Result result1 = new Result(runner1, race1, 180); // John Doe, Marathon, 180 perces időeredmény
         Result result2 = new Result(runner2, race1, 200); // Jane Smith, Marathon, 200 perces időeredmény
         Result result3 = new Result(runner3, race2, 90);  // Bob Johnson, Half Marathon, 90 perces időeredmény
-        Result result4 = new Result(runner4, race2, 100); // Alice Brown, Half Marathon, 100 perces időeredmény
+        Result result4 = new Result(runner4, race3, 1); // Alice Brown, Half Marathon, 100 perces időeredmény
         resultRepository.saveAll(List.of(result1, result2, result3, result4));
     }
 }

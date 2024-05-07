@@ -1,21 +1,23 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futóverseny</title>
+    <title>Futóverseny - Kezdőlap</title>
 </head>
 <body>
-<h1>Futóverseny</h1>
+<h1>Futóverseny - Kezdőlap</h1>
 
-<!-- Button to navigate to the page for adding a new runner -->
-<button onclick="location.href='/addRunner';">Új futó hozzáadása</button>
-
-<!-- Button to navigate to the page for adding a new result -->
-<button onclick="location.href='/addResult';">Új eredmény rögzítése</button>
-
-<!-- Button to navigate to the page for viewing statistics -->
-<button onclick="location.href='/statistics';">Statisztikák</button>
-
+<form action="/new_race.html">
+    <button type="submit">Új verseny létrehozása</button>
+</form>
+<form action="/races.html">
+    <button type="submit">Versenyek listája</button>
+</form>
+<form action="/race_details.html">
+    <button type="submit">Versenyek részlete</button>
+</form>
 </body>
 </html>

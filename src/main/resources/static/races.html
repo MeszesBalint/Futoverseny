@@ -2,14 +2,31 @@
 <html lang="hu" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Versenyel</title>
+    <title>Versenyek listája</title>
 </head>
 <body>
-<h1>Versenyek</h1>
-<ul>
-    <li th:each="race : ${races}">
-        <span th:text="${race.name}"></span> - <span th:text="${race.distance}"></span> km
-    </li>
-</ul>
+<h1>Versenyek listája</h1>
+<div id="raceList"></div>
+
+<script>
+    async function fetchAndDisplayRaces() {
+        const response = await fetch('/races/getAllRaces');
+        const races = await response.json();
+
+        const raceList = document.getElementById('raceList');
+        raceList.innerHTML = '';
+
+        races.forEach(race => {
+            const raceElement = document.createElement('div');
+            raceElement.textContent = `${race.name} (${race.distance}m)`;
+            raceList.appendChild(raceElement);
+        });
+    }
+
+    fetchAndDisplayRaces();
+</script>
+<form action="/index.html">
+    <button type="submit">Vissza a kezdőlapra</button>
+</form>
 </body>
 </html>

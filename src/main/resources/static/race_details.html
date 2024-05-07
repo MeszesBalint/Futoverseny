@@ -6,13 +6,46 @@
 </head>
 <body>
 <h1>Verseny részletek</h1>
-<h2 th:text="${race.name}"></h2>
-<p>Distance: <span th:text="${race.distance}"></span> km</p>
-<h2>Results</h2>
-<ul>
-    <li th:each="result : ${results}">
-        <span th:text="${result.runner.name}"></span> - <span th:text="${result.timeInMinutes}"></span> min
-    </li>
-</ul>
+<div id="resultList"></div>
+
+<script>
+    async function fetchAndDisplayRaces() {
+        const response = await fetch('/results/getAllResults');
+        const results = await response.json();
+
+        // Objektum létrehozása versenyek csoportosításához
+        const groupedResults = {};
+
+        results.forEach(result => {
+            if (!groupedResults[result.race.name]) {
+                groupedResults[result.race.name] = [];
+            }
+            groupedResults[result.race.name].push(result);
+        });
+
+        const resultList = document.getElementById('resultList');
+        resultList.innerHTML = '';
+
+        // Eredmények megjelenítése csoportosítva
+        for (const raceName in groupedResults) {
+            const raceResults = groupedResults[raceName];
+            const raceElement = document.createElement('div');
+            raceElement.innerHTML = `<h2>${raceName}</h2>`;
+
+            raceResults.forEach(result => {
+                const resultElement = document.createElement('p');
+                resultElement.textContent = `${result.runner.name} ${result.timeInMinutes} perc`;
+                raceElement.appendChild(resultElement);
+            });
+
+            resultList.appendChild(raceElement);
+        }
+    }
+
+    fetchAndDisplayRaces();
+</script>
+<form action="/index.html">
+    <button type="submit">Vissza a kezdőlapra</button>
+</form>
 </body>
 </html>
