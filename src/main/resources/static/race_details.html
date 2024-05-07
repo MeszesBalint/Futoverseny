@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <title>Verseny részletek</title>
@@ -13,7 +13,7 @@
         const response = await fetch('/results/getAllResults');
         const results = await response.json();
 
-        // Objektum létrehozása versenyek csoportosításához
+        // Objektum létrehozása csoportosításhoz
         const groupedResults = {};
 
         results.forEach(result => {
@@ -26,7 +26,7 @@
         const resultList = document.getElementById('resultList');
         resultList.innerHTML = '';
 
-        // Eredmények megjelenítése csoportosítva
+        // Eredmények megjelenítése
         for (const raceName in groupedResults) {
             const raceResults = groupedResults[raceName];
             const raceElement = document.createElement('div');
@@ -34,7 +34,7 @@
 
             raceResults.forEach(result => {
                 const resultElement = document.createElement('p');
-                resultElement.textContent = `${result.runner.name} ${result.timeInMinutes} perc`;
+                resultElement.textContent = `${result.runner.name} ${result.runner.age} ${result.runner.gender} ${result.timeInMinutes} perc`;
                 raceElement.appendChild(resultElement);
             });
 

@@ -29,11 +29,15 @@ public class RaceController {
         return raceService.getAllRaces();
     }
 
-    @PostMapping("addRace")
-    public ResponseEntity<?> addRace(@Valid @RequestBody Race race, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>("Invalid data provided", HttpStatus.BAD_REQUEST);
+    @PostMapping("/addRace")
+    public ResponseEntity<?> addRaceFromForm(@RequestParam("name") String name, @RequestParam("distance") int distance) {
+        Race newRace = new Race(name, distance);
+        Race addedRace = raceService.addRace(newRace);
+        if (addedRace != null) {
+            return ResponseEntity.ok().body("{\"success\": true}");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"success\": false}");
         }
-        return new ResponseEntity<>(raceService.addRace(race), HttpStatus.CREATED);
     }
+
 }
